@@ -23,6 +23,7 @@ import android.content.SharedPreferences.Editor;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.media.AudioManager;
 import com.opentok.android.Connection;
 import com.opentok.android.OpentokError;
 import com.opentok.android.Publisher;
@@ -37,6 +38,7 @@ public class OpenTokAndroidPlugin extends CordovaPlugin implements
   Session.SessionListener, Session.ConnectionListener, Session.SignalListener, 
   PublisherKit.PublisherListener, Session.StreamPropertiesListener{
   
+  private AudioManager audioManager;
   private String sessionId;
   protected Session mSession;
   public static final String TAG = "OTPlugin";
@@ -294,6 +296,12 @@ public class OpenTokAndroidPlugin extends CordovaPlugin implements
         Log.e(TAG, "JSONException"+e.getMessage());
       }
       Log.i(TAG, "subscriber"+streamId+" is connected");
+
+      if (audioManager == null) {
+        audioManager = (AudioManager)cordova.getActivity().getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setSpeakerphoneOn(true);
+      }
+
       this.run();
     }
 

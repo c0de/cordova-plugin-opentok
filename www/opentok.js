@@ -375,6 +375,10 @@ TBPublisher = (function() {
     return this;
   };
 
+  TBPublisher.prototype.toggleSpeaker = function() {
+    return Cordova.exec(TBSuccess, TBError, OTPlugin, "toggleSpeaker", []);
+  };
+
   TBPublisher.prototype.setCameraPosition = function(cameraPosition) {
     pdebug("setting camera position", {
       cameraPosition: cameraPosition

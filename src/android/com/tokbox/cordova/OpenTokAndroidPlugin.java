@@ -299,8 +299,8 @@ public class OpenTokAndroidPlugin extends CordovaPlugin implements
 
       if (audioManager == null) {
         audioManager = (AudioManager)cordova.getActivity().getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-        audioManager.setSpeakerphoneOn(true);
       }
+      audioManager.setSpeakerphoneOn(true);
 
       this.run();
     }
